@@ -13,7 +13,7 @@ const CustomTheme = {
         body: `'Montserrat', sans-serif`,
     },
     token: {
-        colorPrimary: '#EC1B24',
+        colorPrimary: '#0fcc28',
         borderRadius: '5px',
         fontSize: 16
     },
@@ -44,7 +44,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     .active button {
-        background-color: #EC1B24;
+        background-color: #0fcc28;
         color: #fff;
         font-weight: 500;
     }
