@@ -11,7 +11,7 @@ import {Element} from "react-scroll"
 const {Title,Text} = Typography;
 
 const body = {
-    padding: 8
+    padding: 6
 }
 const ProductContainer = ({category,userId,lang}) => {
     const {t} = useTranslation();
@@ -49,7 +49,7 @@ const ProductContainer = ({category,userId,lang}) => {
                                     cover={<img onClick={() => navigate(`/product/view/${userId}/${lang}/${item.id}`)} src={get(item,'imageUrl')}/>}
                                     styles={{body}}
                                 >
-                                    <Title level={5}>{get(item,'name')}</Title>
+                                    <Title level={5} ellipsis>{get(item,'name')}</Title>
                                     <Text>
                                         {Intl.NumberFormat('en-US').format(get(item,'price'))}
                                         {" "} {t("so'm")} {!get(item,'oneVariation') && t("dan")}
@@ -59,7 +59,7 @@ const ProductContainer = ({category,userId,lang}) => {
                                             <Button
                                                 block
                                                 type={"primary"}
-                                                style={{marginTop: 7}}
+                                                style={{marginTop: 7, fontSize: 15}}
                                                 onClick={() => {
                                                     get(item,'oneVariation') ?
                                                         increment(item) : navigate(`/product/view/${userId}/${lang}/${item.id}`)
@@ -95,7 +95,7 @@ const ProductContainer = ({category,userId,lang}) => {
                     })
                 }
             </Row>
-        </Element >
+        </Element>
     );
 };
 

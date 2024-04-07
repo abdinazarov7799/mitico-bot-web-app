@@ -30,10 +30,20 @@ const ProductViewPage = () => {
             }
         }
     })
-    const headData = get(data,'data.data')
+    const headData = get(data,'data.data',[])
     const product = get(head(headData),'product');
+    const isOneVariation = headData?.length === 1;
     useEffect(() => {
-        setCount(1)
+        if (isOneVariation){
+            setSelected(head(headData))
+        }
+    }, [headData]);
+    useEffect(() => {
+        if (isOneVariation) {
+            setCount(0)
+        }else {
+            setCount(1)
+        }
     }, [selected]);
     const addToBasket = () => {
         addToOrder({
@@ -77,7 +87,7 @@ const ProductViewPage = () => {
                 >
                     <Space direction={"vertical"} style={{width: "100%"}} size={"middle"}>
                         {
-                            headData?.map((item) => {
+                            !isOneVariation && headData?.map((item) => {
                                 return  <Radio
                                     value={get(item,'id')}
                                     key={get(item,'id')}
@@ -111,7 +121,7 @@ const ProductViewPage = () => {
                                         </Text>
                                         <Button
                                             type={"primary"}
-                                            onClick={() => count > 1 && setCount(count-1)}
+                                            onClick={() => count > 0 && setCount(count-1)}
                                         >
                                             -
                                         </Button>

@@ -15,7 +15,8 @@ const CustomTheme = {
     token: {
         colorPrimary: '#0fcc28',
         borderRadius: '5px',
-        fontSize: 16
+        fontSize: 16,
+        fontSizeHeading5: 16
     },
 }
 
@@ -25,30 +26,25 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
     }
-
     body {
         overflow-x: hidden;
         max-width: 600px;
         margin: 0 auto;
         min-height: 100vh;
     }
-
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
-
     input[type=number] {
         -moz-appearance: textfield;
     }
-
     .active button {
-        background-color: #0fcc28;
+        background-color: #EC1B24;
         color: #fff;
         font-weight: 500;
     }
-
     .ant-card-cover {
         margin-top: 0 !important;
         margin-inline-start: 0 !important;

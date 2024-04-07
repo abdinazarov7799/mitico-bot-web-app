@@ -5,12 +5,8 @@ import uz from '../../assets/lang/uz.json'
 import ru from '../../assets/lang/ru.json'
 
 const resources = {
-    UZ: {
-        translation: uz
-    },
-    RU: {
-        translation: ru
-    }
+    UZ: {translation: uz},
+    RU: {translation: ru}
 }
 
 i18n
@@ -19,7 +15,6 @@ i18n
         resources,
         lng: window.localStorage.getItem('lang') || config.DEFAULT_APP_LANG,
         fallbackLng: window.localStorage.getItem('lang') || config.DEFAULT_APP_LANG,
-
         interpolation: {
             escapeValue: false
         }

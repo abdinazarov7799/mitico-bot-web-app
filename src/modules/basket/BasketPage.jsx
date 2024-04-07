@@ -79,7 +79,7 @@ const BasketPage = () => {
                                 orders?.map((item,index) => {
                                     return (
                                         <Col span={24} key={index+1} style={{boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", borderRadius: 10,padding: "10px"}}>
-                                            <Row justify={"space-between"}>
+                                            <Row style={{flexWrap: "nowrap"}} justify={"space-between"}>
                                                 <Space>
                                                     <Image
                                                         src={get(item,'imageUrl')}
@@ -88,12 +88,12 @@ const BasketPage = () => {
                                                         height={90}
                                                     />
                                                     <Space direction={"vertical"}>
-                                                        <Title level={5}>{get(item,'name')}</Title>
+                                                        <Title level={5} style={{margin: 0}}>{get(item,'name')}</Title>
                                                         <Text>{get(item,'variationName')}</Text>
                                                         <Text>{Intl.NumberFormat('en-US').format(get(item,'price'))} {t("so'm")}</Text>
                                                     </Space>
                                                 </Space>
-                                                <Space direction={"vertical"} style={{width: 120, justifyContent: "space-between", alignItems: "end"}}>
+                                                <Space direction={"vertical"} style={{ justifyContent: "space-between", alignItems: "end"}}>
                                                     <Text>{Intl.NumberFormat('en-US').format(get(item,'price') * get(item,'count'))} {t("so'm")}</Text>
                                                     <Flex>
                                                         <Button
