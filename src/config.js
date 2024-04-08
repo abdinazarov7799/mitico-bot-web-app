@@ -1,5 +1,5 @@
 const config = {
-    API_ROOT: 'https://hamdi-usta-backend.medias.uz',
+    API_ROOT: 'https://mitico.medias.uz',
     DEFAULT_APP_LANG: 'UZ'
 }
 export  default config
