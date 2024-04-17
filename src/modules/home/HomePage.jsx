@@ -134,7 +134,7 @@ const HomePage = () => {
                     icon={<ShoppingCartOutlined />}
                     style={{transform: "scale(1.4)"}}
                 />
-                <FloatButton.BackTop style={{transform: "scale(1.4)"}}/>
+                <FloatButton.BackTop style={{transform: "scale(1.4)", marginTop: 20}}/>
             </FloatButton.Group>
         </Container>
     );
