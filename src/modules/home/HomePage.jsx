@@ -4,7 +4,7 @@ import Container from "../../components/Container.jsx";
 import useGetAllQuery from "../../hooks/api/useGetAllQuery.js";
 import {KEYS} from "../../constants/key.js";
 import {URLS} from "../../constants/url.js";
-import {get, isEqual} from "lodash";
+import {get} from "lodash";
 import {useTranslation} from "react-i18next";
 import ProductContainer from "./components/ProductContainer.jsx";
 import {useNavigate, useParams} from "react-router-dom";
@@ -60,32 +60,6 @@ const HomePage = () => {
                 </Text>
             </Modal>
             <Space style={{width: "100%"}} direction={"vertical"}>
-                <Row gutter={[10,10]}>
-                    {
-                        get(categoriesData,'data.data')?.map((item) => (
-                            <Col xs={{span: 8}} sm={{span: 6}} key={get(item,'id')} style={{textAlign: "center"}}>
-                                <Link
-                                    activeClass="active"
-                                    to={get(item,'name')}
-                                    smooth={true}
-                                    isDynamic={true}
-                                    offset={-50}
-                                    ignoreCancelEvents={false}
-                                >
-                                    <div style={{
-                                        height: 100,
-                                        backgroundImage: `url(${get(item,'imageUrl')})`,
-                                        backgroundPosition: "center center",
-                                        backgroundSize: "cover",
-                                        borderRadius: "20px"
-                                    }}>
-                                    </div>
-                                    <Text>{get(item,'name')}</Text>
-                                </Link>
-                            </Col>
-                        ))
-                    }
-                </Row>
                 <Carousel autoplay>
                     {
                         get(bannerData, 'data.data')?.map((item) => (

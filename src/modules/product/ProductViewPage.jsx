@@ -92,7 +92,6 @@ const ProductViewPage = () => {
                                     value={get(item,'id')}
                                     key={get(item,'id')}
                                 >
-                                    <Text>{get(item,'name')}</Text>
                                     <Text style={{margin: "0 10px"}}>{get(item,'measure')} {get(item,'measureUnit.name')}</Text>
                                     <Text>{Intl.NumberFormat('en-US').format(get(item,'price'))} {t("so'm")}</Text>
                                 </Radio>

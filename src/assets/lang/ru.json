@@ -10,5 +10,6 @@
   "Malumot yo'q": "Нет информации",
   "Buyurtma raqami": "Номер заказа",
   "To'lov turi": "Способ оплаты",
-  "Delete basket": "Очистить корзину"
+  "Delete basket": "Очистить корзину",
+  "ORDER PRICE SHOULD BE HIGHER THAN": "Цена заказа должна быть высокой"
 }

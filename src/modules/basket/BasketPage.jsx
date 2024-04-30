@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Container from "../../components/Container.jsx";
-import {Alert, Button, Col, Empty, Flex, Image, Input, Row, Space, theme, Typography} from "antd";
+import {Alert, Button, Col, Empty, Flex, Image, Input, notification, Row, Space, theme, Typography} from "antd";
 import {useTranslation} from "react-i18next";
 import {ArrowLeftOutlined, DeleteOutlined} from "@ant-design/icons";
-import {get, isEmpty, isNil} from "lodash";
+import {get, head, isEmpty, isNil} from "lodash";
 import {useNavigate, useParams} from "react-router-dom";
 import useStore from "../../services/store/useStore.jsx";
 import usePostQuery from "../../hooks/api/usePostQuery.js";
@@ -19,7 +19,9 @@ const BasketPage = () => {
     const navigate = useNavigate()
     const {userId,lang} = useParams()
     const [fullPrice, setFullPrice] = useState(0);
-    const {mutate,isLoading} = usePostQuery({})
+    const {mutate,isLoading} = usePostQuery({
+        hideSuccessToast: true
+    })
     const {onClose} = useTelegram();
     useEffect(() => {
         let price = 0
@@ -40,10 +42,16 @@ const BasketPage = () => {
                     }
                 },
                 {
-                    onSuccess: () => {
-                        setOrders([]);
-                        setFullPrice(0);
-                        onClose();
+                    onSuccess: ({data}) => {
+                        if (get(data,'success')){
+                            setOrders([]);
+                            setFullPrice(0);
+                            onClose();
+                        }else {
+                            notification.error({
+                                message: `${t(get(head(get(data,'errors')),'errorMsg'))}  ${get(head(get(data,'errors')),'fieldValue')} ${t("so'm")}`
+                            })
+                        }
                     }
                 })
         }
