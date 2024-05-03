@@ -12,6 +12,7 @@ const Router = ({ ...rest }) => {
     useEffect(() => {
         tg.ready();
         tg.expand();
+        tg.enableClosingConfirmation();
     }, [])
   return (
     <BrowserRouter>
