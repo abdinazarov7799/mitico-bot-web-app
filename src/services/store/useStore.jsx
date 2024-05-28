@@ -5,6 +5,8 @@ const useStore = create((set) =>({
     orders: [],
     branchesIsOpen: true,
     setBranchesIsOpen: (branchesIsOpen) => set({ branchesIsOpen }),
+    botWorked: true,
+    setBotWorked: (botWorked) => set({ botWorked }),
     setOrders: (orders) => set(state => {
         return {...state, orders}
     }),

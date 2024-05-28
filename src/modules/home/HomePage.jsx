@@ -4,7 +4,7 @@ import Container from "../../components/Container.jsx";
 import useGetAllQuery from "../../hooks/api/useGetAllQuery.js";
 import {KEYS} from "../../constants/key.js";
 import {URLS} from "../../constants/url.js";
-import {get} from "lodash";
+import {get, isEqual} from "lodash";
 import {useTranslation} from "react-i18next";
 import ProductContainer from "./components/ProductContainer.jsx";
 import {useNavigate, useParams} from "react-router-dom";
@@ -18,8 +18,8 @@ const HomePage = () => {
     const {t,i18n} = useTranslation();
     const navigate = useNavigate();
     const {lang,userId} = useParams();
-    const {branchesIsOpen,setBranchesIsOpen} = useStore();
-    const [isModalOpen, setIsModalOpen] = useState(!branchesIsOpen);
+    const {branchesIsOpen,setBranchesIsOpen,botWorked,setBotWorked} = useStore();
+    const [isModalOpen, setIsModalOpen] = useState(!branchesIsOpen || !botWorked);
     const {data:categoriesData} = useGetAllQuery({
         key: KEYS.category_list,
         url: URLS.category_list,
@@ -38,13 +38,16 @@ const HomePage = () => {
             }
         }
     })
-    const {data:branchesIsActive} = useGetAllQuery({
+    const {data} = useGetAllQuery({
         key: KEYS.get_branch_active,
         url: URLS.get_branch_active,
     })
+
     useEffect(() => {
-        setBranchesIsOpen(get(branchesIsActive,'data.data'));
-    }, [get(branchesIsActive,'data')]);
+        setBranchesIsOpen(get(data,'data.data.branchActive'));
+        setBotWorked(get(data,'data.data.botWorking'));
+    }, [data]);
+
     const changeLang = () => {
         localStorage.setItem('lang', lang);
         i18n.changeLanguage(lang)

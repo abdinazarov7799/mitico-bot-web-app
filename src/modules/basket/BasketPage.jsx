@@ -14,7 +14,7 @@ const BasketPage = () => {
     const {
         token: { colorBorder },
     } = theme.useToken();
-    const {orders,setOrders,increment, decrement,branchesIsOpen} = useStore();
+    const {orders,setOrders,increment, decrement,branchesIsOpen,botWorked} = useStore();
     const {t} = useTranslation()
     const navigate = useNavigate()
     const {userId,lang} = useParams()
@@ -132,7 +132,7 @@ const BasketPage = () => {
                 <div style={{position: "fixed", bottom: 0,left: 0,  padding: "15px 10px 17px 10px", width: "100%", backgroundColor: colorBorder}}>
                     <Space direction={"vertical"} style={{width: "100%"}}>
                         {
-                            !branchesIsOpen &&
+                            (!branchesIsOpen || !botWorked) &&
                             <Alert message={t("Hozirgi vaqtda barcha filiallarimiz yopilgan. Keltirilgan noqulayliklar uchun uzr so'raymiz.")} type="error" />
                         }
                         <Flex justify={"space-between"} align={"center"}>
@@ -143,7 +143,7 @@ const BasketPage = () => {
                                 {Intl.NumberFormat('en-US').format(fullPrice)} {t("so'm")}
                             </Text>
                         </Flex>
-                        <Button block type={"primary"} onClick={dispatchOrder} loading={isLoading} disabled={!branchesIsOpen}>
+                        <Button block type={"primary"} onClick={dispatchOrder} loading={isLoading} disabled={!branchesIsOpen || !botWorked}>
                             {t("Оформить заказ")}
                         </Button>
                     </Space>
